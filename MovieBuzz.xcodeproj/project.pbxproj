@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3820583122269144007CF57F /* NetworkServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3820583022269144007CF57F /* NetworkServiceManager.swift */; };
+		382058342226A389007CF57F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382058332226A389007CF57F /* Constants.swift */; };
 		383412A622253F5F0088F118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383412A522253F5F0088F118 /* AppDelegate.swift */; };
 		383412A822253F5F0088F118 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383412A722253F5F0088F118 /* ViewController.swift */; };
 		383412AB22253F5F0088F118 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383412A922253F5F0088F118 /* Main.storyboard */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3820583022269144007CF57F /* NetworkServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceManager.swift; sourceTree = "<group>"; };
+		382058332226A389007CF57F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		383412A222253F5F0088F118 /* MovieBuzz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieBuzz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		383412A522253F5F0088F118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		383412A722253F5F0088F118 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3820582F22269103007CF57F /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				3820583022269144007CF57F /* NetworkServiceManager.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		382058322226A375007CF57F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				382058332226A389007CF57F /* Constants.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		3834129922253F5F0088F118 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +131,8 @@
 		383412A422253F5F0088F118 /* MovieBuzz */ = {
 			isa = PBXGroup;
 			children = (
+				382058322226A375007CF57F /* Common */,
+				3820582F22269103007CF57F /* NetworkService */,
 				383412D6222558060088F118 /* MovieList */,
 				383412D7222558100088F118 /* MovieDetail */,
 				383412D8222558230088F118 /* MovieSearch */,
@@ -390,11 +412,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				383412A822253F5F0088F118 /* ViewController.swift in Sources */,
+				382058342226A389007CF57F /* Constants.swift in Sources */,
 				383412EB22257F2E0088F118 /* MovieListInteractor.swift in Sources */,
 				383412E422255BB60088F118 /* MovieListView.swift in Sources */,
 				383412A622253F5F0088F118 /* AppDelegate.swift in Sources */,
 				383412EF22257F510088F118 /* MovieListRouter.swift in Sources */,
 				383412AE22253F5F0088F118 /* MovieBuzz.xcdatamodeld in Sources */,
+				3820583122269144007CF57F /* NetworkServiceManager.swift in Sources */,
 				383412E922256B110088F118 /* MovieListProtocols.swift in Sources */,
 				383412E6222560310088F118 /* Movie.swift in Sources */,
 				383412ED22257F3C0088F118 /* MovieListPresenter.swift in Sources */,

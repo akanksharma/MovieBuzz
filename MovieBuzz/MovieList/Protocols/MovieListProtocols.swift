@@ -20,6 +20,8 @@ protocol MovieListViewToPresenterProtocol : class{
     var interactor : MovieListPresenterToInteractorProtocol? {get set}
     var router : MovieListPresenterToRouterProtocol? {get set}
     var view : MovieListPresenterToViewProtocol? {get set}
+    var pageNumber : Int? {get set}
+    var totalMovies : Int? {get set}
     func viewDidLoad()
 }
 

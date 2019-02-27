@@ -9,6 +9,10 @@
 import Foundation
 
 class MovieListPresenter : MovieListViewToPresenterProtocol{
+    var pageNumber: Int?
+    
+    var totalMovies: Int?
+    
     var router: MovieListPresenterToRouterProtocol?
     
     var view : MovieListPresenterToViewProtocol?
