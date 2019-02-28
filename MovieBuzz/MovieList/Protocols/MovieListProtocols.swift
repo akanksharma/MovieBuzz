@@ -22,18 +22,20 @@ protocol MovieListViewToPresenterProtocol : class{
     var view : MovieListPresenterToViewProtocol? {get set}
     var pageNumber : Int? {get set}
     var totalMovies : Int? {get set}
+    func fetchMovies(withPageNumber : Int)
     func viewDidLoad()
 }
 
 //Presenter -> Interactor
 protocol MovieListPresenterToInteractorProtocol : class{
     var presenter:MovieListInteractorToPresenterProtocol? {get set}
-    func getMovieList()
+    func getMovieList(withPageNumber : Int?)
 }
 
 //Interactor -> Presenter
 protocol MovieListInteractorToPresenterProtocol : class{
-    func movieListDidFetch(movieList : [Movie])
+//    func movieListDidFetch(movieList : [Movie])
+    func movieListDidFetch(movieListResponse : [String:Any])
 }
 
 //Presenter -> View

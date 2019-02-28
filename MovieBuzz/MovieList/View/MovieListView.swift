@@ -24,8 +24,9 @@ class MovieListView: UIViewController, MovieListPresenterToViewProtocol {
         // Do any additional setup after loading the view.
     }
     func showMovieList(movies: [Movie]) {
-        moviesList = movies
+        moviesList = moviesList + movies
         collectionViewMovies.reloadData()
+        isPageRefreshing=false
     }
 
     /*
@@ -67,7 +68,9 @@ extension MovieListView : UICollectionViewDelegate, UICollectionViewDataSource, 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if(self.collectionViewMovies.contentOffset.y >= (self.collectionViewMovies.contentSize.height - self.collectionViewMovies.bounds.size.height)) {
             if(isPageRefreshing==false) {
+                self.presenter?.fetchMovies(withPageNumber: 2)
                 isPageRefreshing=true
+                
             }
         }
     }
