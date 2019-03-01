@@ -11,10 +11,12 @@ import Foundation
 struct Movie {
     var name:String!
     var imageURL : String!
+    var movieId : Int!
     
-    init(attributes:[String:String]) {
-        name = attributes["name"]
-        imageURL = attributes["imageURL"]
+    init(attributes:[String:Any]) {
+        name = attributes["name"] as? String
+        imageURL = attributes["imageURL"] as? String
+        movieId = attributes["movieId"] as? Int
     }
     
 }

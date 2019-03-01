@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class MovieListPresenter : MovieListViewToPresenterProtocol{
+    
+    
     
     var pageNumber: Int?
     
@@ -25,7 +28,10 @@ class MovieListPresenter : MovieListViewToPresenterProtocol{
     func fetchMovies(withPageNumber: Int) {
         self.pageNumber = (self.pageNumber ?? 0) + 1
         interactor?.getMovieList(withPageNumber: pageNumber)
-
+    }
+    
+    func showMovieDetail(ofMovie: Movie, fromVC: UIViewController) {
+        router?.pushToMovieDetail(withMovie: ofMovie, fromVC: fromVC)
     }
 }
 
@@ -36,7 +42,7 @@ extension MovieListPresenter : MovieListInteractorToPresenterProtocol{
             if key == "results"{
                 let movieInfoArr : [[String:Any]] = item as! [[String:Any]]
                 for movieInfo in movieInfoArr{
-                    movieList.append(Movie.init(attributes: ["name":movieInfo["title"] as! String,"imageURL": (NetworkServiceManager.shared.movieImagePath) + (movieInfo["poster_path"] as! String)]))
+                    movieList.append(Movie.init(attributes: ["name":movieInfo["title"] as! String,"movieId":movieInfo["id"] as! Int ,"imageURL": (NetworkServiceManager.shared.movieImagePath) + (movieInfo["poster_path"] as! String)]))
                 }
             }
             if key == "page"{

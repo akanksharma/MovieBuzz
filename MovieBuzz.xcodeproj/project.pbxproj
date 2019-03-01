@@ -23,6 +23,12 @@
 		383412EB22257F2E0088F118 /* MovieListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383412EA22257F2E0088F118 /* MovieListInteractor.swift */; };
 		383412ED22257F3C0088F118 /* MovieListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383412EC22257F3C0088F118 /* MovieListPresenter.swift */; };
 		383412EF22257F510088F118 /* MovieListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383412EE22257F510088F118 /* MovieListRouter.swift */; };
+		38CA9AC6222958EB004EEFDC /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA9AC5222958EB004EEFDC /* MovieDetailView.swift */; };
+		38CA9AC822296B10004EEFDC /* MovieDetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA9AC722296B10004EEFDC /* MovieDetailProtocols.swift */; };
+		38CA9ACB22296B6A004EEFDC /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA9ACA22296B6A004EEFDC /* MovieDetail.swift */; };
+		38CA9ACD22296B7E004EEFDC /* MovieDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA9ACC22296B7E004EEFDC /* MovieDetailPresenter.swift */; };
+		38CA9ACF22296B97004EEFDC /* MovieDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA9ACE22296B97004EEFDC /* MovieDetailInteractor.swift */; };
+		38CA9AD122296BCB004EEFDC /* MovieDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA9AD022296BCB004EEFDC /* MovieDetailRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +71,12 @@
 		383412EA22257F2E0088F118 /* MovieListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListInteractor.swift; sourceTree = "<group>"; };
 		383412EC22257F3C0088F118 /* MovieListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListPresenter.swift; sourceTree = "<group>"; };
 		383412EE22257F510088F118 /* MovieListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListRouter.swift; sourceTree = "<group>"; };
+		38CA9AC5222958EB004EEFDC /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		38CA9AC722296B10004EEFDC /* MovieDetailProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailProtocols.swift; sourceTree = "<group>"; };
+		38CA9ACA22296B6A004EEFDC /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		38CA9ACC22296B7E004EEFDC /* MovieDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPresenter.swift; sourceTree = "<group>"; };
+		38CA9ACE22296B97004EEFDC /* MovieDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailInteractor.swift; sourceTree = "<group>"; };
+		38CA9AD022296BCB004EEFDC /* MovieDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +198,7 @@
 				383412E022255B4F0088F118 /* Presenter */,
 				383412E122255B5D0088F118 /* Entity */,
 				383412E222255B6A0088F118 /* Router */,
+				38CA9AC922296B18004EEFDC /* Protocols */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -240,6 +253,7 @@
 		383412DE22255B2F0088F118 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				38CA9AC5222958EB004EEFDC /* MovieDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,6 +261,7 @@
 		383412DF22255B350088F118 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				38CA9ACE22296B97004EEFDC /* MovieDetailInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -254,6 +269,7 @@
 		383412E022255B4F0088F118 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				38CA9ACC22296B7E004EEFDC /* MovieDetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -261,6 +277,7 @@
 		383412E122255B5D0088F118 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				38CA9ACA22296B6A004EEFDC /* MovieDetail.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -268,6 +285,7 @@
 		383412E222255B6A0088F118 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				38CA9AD022296BCB004EEFDC /* MovieDetailRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -276,6 +294,14 @@
 			isa = PBXGroup;
 			children = (
 				383412E822256B110088F118 /* MovieListProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		38CA9AC922296B18004EEFDC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				38CA9AC722296B10004EEFDC /* MovieDetailProtocols.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -412,11 +438,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				383412A822253F5F0088F118 /* ViewController.swift in Sources */,
+				38CA9ACB22296B6A004EEFDC /* MovieDetail.swift in Sources */,
+				38CA9AD122296BCB004EEFDC /* MovieDetailRouter.swift in Sources */,
 				382058342226A389007CF57F /* Constants.swift in Sources */,
 				383412EB22257F2E0088F118 /* MovieListInteractor.swift in Sources */,
+				38CA9AC822296B10004EEFDC /* MovieDetailProtocols.swift in Sources */,
 				383412E422255BB60088F118 /* MovieListView.swift in Sources */,
+				38CA9ACF22296B97004EEFDC /* MovieDetailInteractor.swift in Sources */,
 				383412A622253F5F0088F118 /* AppDelegate.swift in Sources */,
 				383412EF22257F510088F118 /* MovieListRouter.swift in Sources */,
+				38CA9AC6222958EB004EEFDC /* MovieDetailView.swift in Sources */,
+				38CA9ACD22296B7E004EEFDC /* MovieDetailPresenter.swift in Sources */,
 				383412AE22253F5F0088F118 /* MovieBuzz.xcdatamodeld in Sources */,
 				3820583122269144007CF57F /* NetworkServiceManager.swift in Sources */,
 				383412E922256B110088F118 /* MovieListProtocols.swift in Sources */,

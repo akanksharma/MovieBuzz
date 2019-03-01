@@ -26,7 +26,6 @@ class MovieListInteractor : MovieListPresenterToInteractorProtocol{
                 self.presenter?.movieListDidFetch(movieListResponse: responseJSON)
             }
         }
-        
     }
     
     func getAllMovies() -> [Movie] {

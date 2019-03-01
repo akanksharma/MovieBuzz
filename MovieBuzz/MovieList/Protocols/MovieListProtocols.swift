@@ -7,11 +7,12 @@
 //
 
 import Foundation
-
+import UIKit
 
 //Presenter -> Router
 protocol MovieListPresenterToRouterProtocol : class{
-    static func createMovieModule(view : MovieListView)
+    static func createMovieModule(movieViewRef : MovieListView)
+    func pushToMovieDetail(withMovie:Movie,fromVC : UIViewController)
 }
 
 //View -> Presenter
@@ -22,7 +23,9 @@ protocol MovieListViewToPresenterProtocol : class{
     var view : MovieListPresenterToViewProtocol? {get set}
     var pageNumber : Int? {get set}
     var totalMovies : Int? {get set}
+    
     func fetchMovies(withPageNumber : Int)
+    func showMovieDetail(ofMovie : Movie, fromVC : UIViewController)
     func viewDidLoad()
 }
 

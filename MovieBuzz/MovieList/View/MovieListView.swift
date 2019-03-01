@@ -18,7 +18,7 @@ class MovieListView: UIViewController, MovieListPresenterToViewProtocol {
     var isPageRefreshing = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        MovieListRouter.createModel(movieViewRef: self)
+        MovieListRouter.createMovieModule(movieViewRef: self)
         presenter?.viewDidLoad()
         imageCache.removeAllObjects()
         // Do any additional setup after loading the view.
@@ -63,6 +63,10 @@ extension MovieListView : UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: (K_SCREEN_WIDTH - 40)/2, height: (K_SCREEN_WIDTH - 40)/2 + 30)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.showMovieDetail(ofMovie: moviesList[indexPath.row], fromVC: self)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
