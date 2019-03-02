@@ -18,6 +18,7 @@ class MovieDetailView: UIViewController , MovieDetailPresenterToViewProtocol{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         presenter?.movieDetailViewDidLoad()
         // Do any additional setup after loading the view.
     }

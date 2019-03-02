@@ -14,8 +14,17 @@ class NetworkServiceManager: NSObject {
     typealias RequestCompletionBlock = (_ data : [String:Any]?, _ error : Error?) -> Void
     
     public let movieImagePath = "https://image.tmdb.org/t/p/w500/"
+    // 1
+    let defaultSession = URLSession(configuration: .default)
+    // 2
+    var dataTask: URLSessionDataTask?
     
-    func request(url: String, parameters:[String:AnyObject]?, completion : @escaping RequestCompletionBlock)  {
+    func request(url: String, parameters:[String:AnyObject]?, isSearchRequest:Bool = false, completion : @escaping RequestCompletionBlock)  {
+        if isSearchRequest{
+          dataTask?.cancel()
+        }
+        
+        
         let urlSafeAddress = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         var request = URLRequest(url: URL(string: urlSafeAddress!)!)
         request.httpMethod = "GET"
@@ -28,7 +37,7 @@ class NetworkServiceManager: NSObject {
             }
         }
         
-        let networkTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
                 return
             }
@@ -45,7 +54,6 @@ class NetworkServiceManager: NSObject {
                 completion(nil,error)
             }
         }
-        networkTask.resume()
-        
+        dataTask?.resume()
     }
 }
