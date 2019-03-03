@@ -75,6 +75,8 @@ class DBServiceManager: NSObject {
         let context = appDelegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Movies")
+        request.predicate = NSPredicate(format: "isFavorite = %d", true)
+
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request)

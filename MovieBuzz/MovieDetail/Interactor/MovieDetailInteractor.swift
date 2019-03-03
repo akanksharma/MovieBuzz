@@ -37,34 +37,51 @@ class MovieDetailInteractor: MovieDetailPresenterToInteractorProtocol {
             print("all activities complete 👍")
             var movieDetailAttributes : [String:Any] = [String:Any]()
             movieDetailAttributes["overview"] = self.movieDetailResponse?["overview"] as! String
-            let castArr : [[String:Any]] = self.movieCastResponse?["cast"] as! [[String:Any]]
-            var castString = ""
-            for cast in castArr.prefix(5){
-                castString = castString + "," + (cast["name"] as! String)
+            
+            if let castArr : [[String:Any]] = self.movieCastResponse?["cast"] as? [[String:Any]]{
+                if castArr.count != 0 {
+                    var castString = ""
+                    for cast in castArr.prefix(5){
+                        castString = castString + "," + (cast["name"] as! String)
+                    }
+                    castString.removeFirst()
+                    movieDetailAttributes["cast"] = castString
+                }
             }
-            castString.removeFirst()
-            movieDetailAttributes["cast"] = castString
+            
+            
             movieDetailAttributes["movie"] = withMovie
-            let dateFormatter : DateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-mm-dd"
-            movieDetailAttributes["releaseDate"] = dateFormatter.date(from: self.movieDetailResponse?["release_date"] as! String)
-            let genreArray : [[String:Any]] = self.movieDetailResponse?["genres"] as! [[String:Any]]
-            var genreString = ""
-            for genre in genreArray {
-                genreString = genreString + (genre["name"] as! String) + ","
+            
+            
+            if let releaseDate = self.movieDetailResponse?["release_date"] as? String{
+                let dateFormatter : DateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-mm-dd"
+                movieDetailAttributes["releaseDate"] = dateFormatter.date(from: releaseDate)
             }
-            genreString.removeLast()
-            movieDetailAttributes["genre"] = genreString
+            
+          
+            
+            
+            let genreArray : [[String:Any]] = self.movieDetailResponse?["genres"] as! [[String:Any]]
+            if genreArray.count != 0 {
+                var genreString = ""
+                for genre in genreArray {
+                    genreString = genreString + (genre["name"] as! String) + ","
+                }
+                genreString.removeLast()
+                movieDetailAttributes["genre"] = genreString
+            }
+            
+            
             if let rating = self.movieDetailResponse?["vote_average"] as? NSNumber {
                 movieDetailAttributes["ratings"] = rating.floatValue/2.0
 
             }
             
             movieDetailAttributes["isFavorite"] = DBServiceManager.shared.checkFavoriteStatusForMovie(movieID: (withMovie?.movieId))
-            movieDetailAttributes["backdropPath"] = "https://image.tmdb.org/t/p/original/" + (self.movieDetailResponse?["backdrop_path"] as! String)
-            
-
-            print(castString)
+            if let backdropPath = self.movieDetailResponse?["backdrop_path"] as? String{
+                movieDetailAttributes["backdropPath"] = "https://image.tmdb.org/t/p/original/" + backdropPath
+            }
             self.presenter?.didFetchedMovieDetail(withMovieDetail: MovieDetail(attributes: movieDetailAttributes))
         }
         

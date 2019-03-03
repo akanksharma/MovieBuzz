@@ -10,6 +10,7 @@ import UIKit
 
 class MovieSearchView: UIViewController, MovieSearchPresenterToViewProtocol {
     
+    @IBOutlet weak var labelMovieSearch: UILabel!
     var arrMovie : [Movie]?
     @IBOutlet weak var tableViewSearchResult: UITableView!
     
@@ -20,11 +21,29 @@ class MovieSearchView: UIViewController, MovieSearchPresenterToViewProtocol {
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "Type something here to search"
+        search.searchBar.placeholder = "Type something here"
+        search.searchBar.tintColor = UIColor.white
+        search.searchBar.barTintColor = UIColor.white
         navigationItem.searchController = search
+        search.searchBar.barStyle = .default
+        search.isActive = true
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        search.searchBar.becomeFirstResponder()
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = true
+        }
+    }
     func showSearchResults(withMovies: [Movie]) {
         arrMovie = withMovies
         tableViewSearchResult.reloadData()
@@ -44,8 +63,14 @@ class MovieSearchView: UIViewController, MovieSearchPresenterToViewProtocol {
 extension MovieSearchView : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let movies = arrMovie {
+            if movies.count == 0 {
+                labelMovieSearch.isHidden = false
+            } else {
+                labelMovieSearch.isHidden = true
+            }
             return movies.count
         } else {
+            labelMovieSearch.isHidden = true
             return 0
         }
     }
@@ -69,6 +94,8 @@ extension MovieSearchView : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         print(text)
-        presenter.fetchMovieSearchResults(withKeyword: text)
+        if text != ""{
+            presenter.fetchMovieSearchResults(withKeyword: text)
+        }
     }
 }

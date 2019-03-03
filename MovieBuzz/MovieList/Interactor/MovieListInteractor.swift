@@ -15,9 +15,8 @@ class MovieListInteractor : MovieListPresenterToInteractorProtocol{
     weak var presenter : MovieListInteractorToPresenterProtocol?
     
     func getMovieList(withPageNumber : Int?){
-        print(withPageNumber)
         let urlString = "https://api.themoviedb.org/3/discover/movie?page=" + String(withPageNumber ?? 1) + "&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=78b16ae4147c7d6f435416a434d5c9d2"
-        NetworkServiceManager.shared.request(url: urlString, parameters: nil) { (response, error) in
+        NetworkServiceManager.shared.request(url: urlString, parameters: nil,isSearchRequest: true) { (response, error) in
             DispatchQueue.main.async {
                 guard let responseJSON = response else {
                     return

@@ -42,7 +42,13 @@ extension MovieListPresenter : MovieListInteractorToPresenterProtocol{
             if key == "results"{
                 let movieInfoArr : [[String:Any]] = item as! [[String:Any]]
                 for movieInfo in movieInfoArr{
-                    movieList.append(Movie.init(attributes: ["name":movieInfo["title"] as! String,"movieId":movieInfo["id"] as! Int ,"imageURL": (NetworkServiceManager.shared.movieImagePath) + (movieInfo["poster_path"] as! String)]))
+                    var attributes : [String:Any] = [String:Any]()
+                    attributes["name"] = movieInfo["title"] as! String
+                    attributes["movieId"] = movieInfo["id"] as! Int
+                    if let posterPath  = movieInfo["poster_path"] as? String {
+                        attributes["imageURL"] = (NetworkServiceManager.shared.movieImagePath) + posterPath
+                    }
+                    movieList.append(Movie.init(attributes: attributes))
                 }
             }
             if key == "page"{

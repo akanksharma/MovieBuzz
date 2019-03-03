@@ -12,6 +12,7 @@ class MovieDetailView: UIViewController , MovieDetailPresenterToViewProtocol{
     
     
     
+    @IBOutlet weak var bgImagePoster: UIImageView!
     
     @IBOutlet weak var buttonFavorite: UIButton!
     @IBOutlet weak var labelRatings: UILabel!
@@ -36,24 +37,45 @@ class MovieDetailView: UIViewController , MovieDetailPresenterToViewProtocol{
     func showMovieDetail(movieDetail: MovieDetail) {
         self.movieDetail = movieDetail
         labelTitle.text = movieDetail.movie.name
-        labelOverview.text = movieDetail.overview
-        let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy"
-        labelReleaseDate.text = "Release Year : " + dateFormatter.string(from: movieDetail.releaseDate)
-        imagePoster.loadImageUsingUrlString(urlString: movieDetail.backdropPath)
-        labelGenre.text = "Genre : " + movieDetail.genre
-        labelCast.text = "Cast : " +  movieDetail.cast
-        labelRatings.text = "Ratings : \(movieDetail.ratings ?? 1.0)/5"
+       
+        if movieDetail.overview != nil {
+            labelOverview.text = movieDetail.overview
+        }
+        if movieDetail.releaseDate != nil {
+            let dateFormatter : DateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy"
+            labelReleaseDate.text = "Release Year : " + dateFormatter.string(from: movieDetail.releaseDate)
+        }
+        if movieDetail.backdropPath != nil {
+            imagePoster.loadImageUsingUrlString(urlString: movieDetail.backdropPath)
+        } else {
+            imagePoster.image = UIImage(named: "not-available")
+        }
+        if movieDetail.movie.imageURL != nil {
+            bgImagePoster.loadImageUsingUrlString(urlString: movieDetail.movie.imageURL)
+        }
+
+        if movieDetail.genre != nil {
+            labelGenre.text = "Genre : " + movieDetail.genre
+        }
+        if movieDetail.cast != nil {
+            labelCast.text = "Cast : " +  movieDetail.cast
+        }
+        if movieDetail.ratings != nil {
+            labelRatings.text = "Ratings : \(movieDetail.ratings ?? 1.0)/5"
+        }
+
         buttonFavorite.isSelected = movieDetail.isFavorite
     }
     
     @IBAction func buttonFavoriteClicked(_ sender: Any) {
-        presenter?.markFavoriteUnfavorite(movie: movieDetail?.movie)
+        if movieDetail != nil {
+           presenter?.markFavoriteUnfavorite(movie: movieDetail?.movie)
+        }
     }
     
     func updateFavStatus(favFlag: Bool) {
         buttonFavorite.isSelected = favFlag
-
     }
     /*
     // MARK: - Navigation

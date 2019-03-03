@@ -50,9 +50,13 @@ extension MovieListView : UICollectionViewDelegate, UICollectionViewDataSource, 
         print(moviesList[indexPath.row].name)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath)
         let imageView: UIImageView = cell.viewWithTag(1) as! UIImageView
+        let bgImageView: UIImageView = cell.viewWithTag(3) as! UIImageView
+        
         let title: UILabel = cell.viewWithTag(2) as! UILabel
         title.text = moviesList[indexPath.row].name
         imageView.loadImageUsingUrlString(urlString: moviesList[indexPath.row].imageURL)
+        bgImageView.loadImageUsingUrlString(urlString: moviesList[indexPath.row].imageURL)
+
         return cell
     }
     
@@ -74,7 +78,6 @@ extension MovieListView : UICollectionViewDelegate, UICollectionViewDataSource, 
             if(isPageRefreshing==false) {
                 self.presenter?.fetchMovies(withPageNumber: 2)
                 isPageRefreshing=true
-                
             }
         }
     }

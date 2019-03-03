@@ -21,9 +21,9 @@ class NetworkServiceManager: NSObject {
     
     func request(url: String, parameters:[String:AnyObject]?, isSearchRequest:Bool = false, completion : @escaping RequestCompletionBlock)  {
         if isSearchRequest{
-          dataTask?.cancel()
+            dataTask?.cancel()
         }
-        
+
         
         let urlSafeAddress = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         var request = URLRequest(url: URL(string: urlSafeAddress!)!)

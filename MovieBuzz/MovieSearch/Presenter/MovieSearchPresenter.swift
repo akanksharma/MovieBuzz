@@ -35,12 +35,16 @@ extension MovieSearchPresenter : MovieSearchInteractorToPresenterProtocol {
             if key == "results"{
                 let movieInfoArr : [[String:Any]] = item as! [[String:Any]]
                 for movieInfo in movieInfoArr{
-                    movieList.append(Movie.init(attributes: ["name":movieInfo["title"] as! String,"movieId":movieInfo["id"] as! Int]))
+                    var attributes : [String:Any] = [String:Any]()
+                    attributes["name"] = movieInfo["title"] as! String
+                    attributes["movieId"] = movieInfo["id"] as! Int
+                    if let posterPath  = movieInfo["poster_path"] as? String {
+                        attributes["imageURL"] = (NetworkServiceManager.shared.movieImagePath) + posterPath
+                    }
+                    movieList.append(Movie.init(attributes: attributes))
                 }
             }
         }
         view?.showSearchResults(withMovies: movieList)
     }
-    
-    
 }

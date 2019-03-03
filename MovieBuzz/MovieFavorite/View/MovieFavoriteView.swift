@@ -10,6 +10,7 @@ import UIKit
 
 class MovieFavoriteView: UIViewController, MovieFavoritePresenterToViewProtocol{
     @IBOutlet weak var tableViewFavorite: UITableView!
+    @IBOutlet weak var labelNoFavorites: UILabel!
     
     var favMovies : [Movie]?
 
@@ -41,7 +42,18 @@ class MovieFavoriteView: UIViewController, MovieFavoritePresenterToViewProtocol{
 
 extension MovieFavoriteView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favMovies?.count ?? 0
+        if let favoriteMovies = favMovies {
+            if favoriteMovies.count == 0 {
+                labelNoFavorites.isHidden = false
+                return 0
+            } else {
+                labelNoFavorites.isHidden = true
+                return favoriteMovies.count
+            }
+        } else{
+            labelNoFavorites.isHidden = false
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
