@@ -15,6 +15,7 @@ protocol MovieDetailViewToPresenterProtocol : class{
     var view : MovieDetailPresenterToViewProtocol? {get set}
     var movie : Movie? {get set}
     func movieDetailViewDidLoad()
+    func markFavoriteUnfavorite(movie : Movie?)
 }
 
 protocol MovieDetailPresenterToRouterProtocol : class{
@@ -24,12 +25,15 @@ protocol MovieDetailPresenterToRouterProtocol : class{
 protocol MovieDetailPresenterToInteractorProtocol : class{
     var presenter : MovieDetailInteractorToPresenterProtocol? {get set}
     func getMovieDetail(withMovie : Movie?)
+    func updateFavoriteStatus(movie : Movie?)
 }
 
 protocol MovieDetailInteractorToPresenterProtocol : class{
     func didFetchedMovieDetail(withMovieDetail : MovieDetail)
+    func didUpdateFavFlag(favFlag : Bool)
 }
 
 protocol MovieDetailPresenterToViewProtocol : class{
     func showMovieDetail(movieDetail:MovieDetail)
+    func updateFavStatus(favFlag : Bool)
 }

@@ -11,17 +11,22 @@ import Foundation
 struct MovieDetail {
     var overview: String!
     var releaseDate : Date!
-    var ratings : Float
-    var genre : String
-    var movie : Movie
+    var ratings : Float!
+    var genre : String!
+    var movie : Movie!
     var cast : String!
+    var backdropPath : String!
+    var isFavorite : Bool!
+
     
     init(attributes : [String:Any]) {
+        isFavorite = attributes["isFavorite"] as? Bool
         overview = attributes["overview"] as? String
-        ratings = attributes["ratings"] as! Float
-        releaseDate = attributes["ratings"] as? Date
-        movie = attributes["movie"] as! Movie
-        genre = attributes["genre"] as! String
+        ratings = attributes["ratings"] as? Float
+        releaseDate = attributes["releaseDate"] as? Date
+        movie = attributes["movie"] as? Movie
+        genre = attributes["genre"] as? String
         cast = attributes["cast"] as? String
+        backdropPath = attributes["backdropPath"] as? String
     }
 }

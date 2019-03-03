@@ -9,6 +9,10 @@
 import Foundation
 
 class MovieDetailInteractor: MovieDetailPresenterToInteractorProtocol {
+    
+    
+    
+    
     var presenter: MovieDetailInteractorToPresenterProtocol?
     var movieDetailResponse : [String:Any]?
     
@@ -38,10 +42,30 @@ class MovieDetailInteractor: MovieDetailPresenterToInteractorProtocol {
             for cast in castArr.prefix(5){
                 castString = castString + "," + (cast["name"] as! String)
             }
-            movieDetailAttributes["cast"] = castString.removeFirst()
+            castString.removeFirst()
+            movieDetailAttributes["cast"] = castString
+            movieDetailAttributes["movie"] = withMovie
+            let dateFormatter : DateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-mm-dd"
+            movieDetailAttributes["releaseDate"] = dateFormatter.date(from: self.movieDetailResponse?["release_date"] as! String)
+            let genreArray : [[String:Any]] = self.movieDetailResponse?["genres"] as! [[String:Any]]
+            var genreString = ""
+            for genre in genreArray {
+                genreString = genreString + (genre["name"] as! String) + ","
+            }
+            genreString.removeLast()
+            movieDetailAttributes["genre"] = genreString
+            if let rating = self.movieDetailResponse?["vote_average"] as? NSNumber {
+                movieDetailAttributes["ratings"] = rating.floatValue/2.0
+
+            }
+            
+            movieDetailAttributes["isFavorite"] = DBServiceManager.shared.checkFavoriteStatusForMovie(movieID: (withMovie?.movieId))
+            movieDetailAttributes["backdropPath"] = "https://image.tmdb.org/t/p/original/" + (self.movieDetailResponse?["backdrop_path"] as! String)
+            
 
             print(castString)
-//            self.presenter?.didFetchedMovieDetail(withMovieDetail: MovieDetail(attributes: movieDetailAttributes))
+            self.presenter?.didFetchedMovieDetail(withMovieDetail: MovieDetail(attributes: movieDetailAttributes))
         }
         
         
@@ -75,6 +99,9 @@ class MovieDetailInteractor: MovieDetailPresenterToInteractorProtocol {
                 
             }
         }
-        
+    }
+    
+    func updateFavoriteStatus(movie: Movie?) {
+        presenter?.didUpdateFavFlag(favFlag: DBServiceManager.shared.saveMovieAsFavorite(movieId: movie?.movieId, movieName: movie?.name))
     }
 }

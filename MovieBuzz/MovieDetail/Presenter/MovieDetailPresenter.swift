@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 class MovieDetailPresenter: MovieDetailViewToPresenterProtocol {
+    
+    
+    
+    
     var movie: Movie?
     var interactor: MovieDetailPresenterToInteractorProtocol?
     
@@ -20,10 +24,17 @@ class MovieDetailPresenter: MovieDetailViewToPresenterProtocol {
         interactor?.getMovieDetail(withMovie: movie)
     }
     
+    func markFavoriteUnfavorite(movie: Movie?) {
+        interactor?.updateFavoriteStatus(movie: movie)
+    }
     
 }
 
 extension MovieDetailPresenter : MovieDetailInteractorToPresenterProtocol{
+    func didUpdateFavFlag(favFlag: Bool) {
+        view?.updateFavStatus(favFlag: favFlag)
+    }
+    
     func didFetchedMovieDetail(withMovieDetail: MovieDetail) {
         view?.showMovieDetail(movieDetail: withMovieDetail)
     }

@@ -22,7 +22,6 @@ class MovieListInteractor : MovieListPresenterToInteractorProtocol{
                 guard let responseJSON = response else {
                     return
                 }
-                
                 self.presenter?.movieListDidFetch(movieListResponse: responseJSON)
             }
         }

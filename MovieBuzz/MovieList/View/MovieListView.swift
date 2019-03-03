@@ -113,7 +113,9 @@ extension UIImageView {
                 let imageToCache = UIImage(data: data!)
                 
                 if imageUrlString == urlString {
-                    self.image = imageToCache?.resizeImage(targetSize: CGSize.init(width: (K_SCREEN_WIDTH - 40)/2, height: (K_SCREEN_WIDTH - 40)/2))
+//                    self.image = imageToCache?.resizeImage(targetSize: CGSize.init(width: (K_SCREEN_WIDTH - 40)/2, height: (K_SCREEN_WIDTH - 40)/2))
+                    self.image = imageToCache
+
                 }
                 
                 imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
