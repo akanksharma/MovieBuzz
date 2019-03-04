@@ -13,7 +13,10 @@ MovieBuzz has following features
  * Design Pattern used is VIPER
  * Image Caching is also used.
  
- If given some more time, I would have completed the unit test cases also.
- : Also, improved the navigation of the app.
- : Better error handling
+ If given some more time, I would have 
+ * completed the unit test cases also.
+ * Also, improved the navigation of the app.
+ * Better error handling
+ 
+The list is endless.... :D
  
