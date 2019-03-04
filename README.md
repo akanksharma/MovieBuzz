@@ -14,6 +14,6 @@ MovieBuzz has following features
  * Image Caching is also used.
  
  If given some more time, I would have completed the unit test cases also.
- Also, improved the navigation of the app.
- 
+ : Also, improved the navigation of the app.
+ : Better error handling
  
